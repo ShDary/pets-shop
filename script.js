@@ -91,12 +91,12 @@ const itemTemplate = document.querySelector('#item-template');
 
 function prepareShopItem(shopItem) {
   const { title, description, tags, img, price } = shopItem;
-  const newItem = itemTemplate.textContent.cloneNode(true);
+  const newItem = itemTemplate.content.cloneNode(true);
 
   newItem.querySelector('h1').textContent = title;
   newItem.querySelector('p').textContent = description;
-  newItem.querySelector('img').textContent = img;
-  newItem.querySelector('.price').textContent = ${price}Р`;
+  newItem.querySelector('img').src = img;
+  newItem.querySelector('.price').textContent = $`{price}Р`;
 
   const tagHolder = newItem.querySelector('.tags');
 
@@ -108,5 +108,4 @@ function prepareShopItem(shopItem) {
   });
 
   return newItem;
-  
 }
