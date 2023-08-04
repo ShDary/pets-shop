@@ -109,3 +109,8 @@ function prepareShopItem(shopItem) {
 
   return newItem;
 }
+
+  items.forEach((item) => {
+    const newItem = prepareShopItem(item);
+    shopItem.append(newItem);
+  });
