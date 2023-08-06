@@ -84,3 +84,45 @@ const items = [
     img: "./img/12.jpeg",
   },
 ];
+
+const shopItem = document.querySelector('#shop-items');
+const nothingFound = document.querySelector('#nothing-found');
+const itemTemplate = document.querySelector('#item-template');
+
+function prepareShopItem(shopItem) {
+  const { title, description, tags, img, price } = shopItem;
+  const item = itemTemplate.content.cloneNode(true);
+
+  item.querySelector('h1').textContent = title;
+  item.querySelector('p').textContent = description;
+  item.querySelector('img').src = img;
+  item.querySelector('.price').textContent = ` ${price}Р `;
+
+  const tagsHolder = item.querySelector('.tags');
+
+  tags.forEach((tag) => {
+    const element = document.createElement('span');
+    element.textContent = tag;
+    element.classList.add('tag');
+    tagsHolder.append(element);
+  });
+
+  return item;
+}
+
+let currentState = [...items];
+
+function renderItems(arr) {
+  nothingFound.textContent = '';
+  shopItem.innerHTML = '';
+  
+  arr.forEach((item) => {
+    shopItem.append(prepareShopItem(item));
+  })
+  
+  if (!arr.length) {
+    nothingFound.textContent = 'Ничего не найдено';
+  }
+}
+
+renderItems(currentState);
